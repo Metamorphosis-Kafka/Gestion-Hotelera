@@ -40,7 +40,7 @@ $pagos = [
     <!-- Font Awesome (para los iconos) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Hoja de estilos personalizada -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/css/style_recepcion.css">
 </head>
 <body>
 
@@ -203,6 +203,6 @@ $pagos = [
     </div>
 
     <!-- Script para la funcionalidad de las pestañas -->
-    <script src="script.js"></script>
+    <script src="../src/js/script_recepcion.js"></script>
 </body>
 </html>
