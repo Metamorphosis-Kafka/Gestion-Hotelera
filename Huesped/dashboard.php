@@ -175,39 +175,107 @@ $rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : 'Huésped';
                     </div>
                 </div>
 
-                <!-- ======================== SECCIÓN DE TABS ======================== -->
-                <div class="card card-tabs">
-                    <!-- Pestañas de navegación -->
-                    <div class="tabs-navigation">
-                        <button class="tab-btn active" data-tab="servicios">Servicios</button>
-                        <button class="tab-btn" data-tab="historial">Historial</button>
-                        <button class="tab-btn" data-tab="nueva-reserva">Nueva Reserva</button>
-                    </div>
+                <!-- ======================== SECCIÓN DE TABS (mejorado) ======================== -->
+                <div class="card card-tabs mb-4 p-0 border-0">
+                <!-- Pestañas de navegación -->
+                <ul class="nav nav-tabs bg-white px-4 pt-3" id="myTab" role="tablist" style="border-bottom:1px solid #eee;">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="servicios-tab" data-bs-toggle="tab" data-bs-target="#servicios" type="button" role="tab">Servicios</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="historial-tab" data-bs-toggle="tab" data-bs-target="#historial" type="button" role="tab">Historial</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="reserva-tab" data-bs-toggle="tab" data-bs-target="#nueva-reserva" type="button" role="tab">Nueva Reserva</button>
+                    </li>
+                </ul>
 
                     <!-- Contenido de las pestañas -->
-                    <div class="tabs-content">
-                        
+                    <div class="tab-content p-4" id="myTabContent">
+
                         <!-- Pestaña: Servicios -->
-                        <div class="tab-pane active" id="servicios">
-                            <p class="text-muted">Contenido de Servicios</p>
+                        <div class="tab-pane fade show active" id="servicios" role="tabpanel">
+
+                            <!-- Título -->
+                            <div class="mb-4">
+                                <h5 class="fw-semibold">Servicios Disponibles</h5>
+                                <p class="text-muted">Mejora tu experiencia con nuestros servicios premium</p>
+                            </div>
+
+                            <!-- Grid de servicios (tus tarjetas) -->
+                            <div class="row g-3">
+
+                                <!-- Servicio 1 -->
+                                <div class="col-md-6">
+                                    <div class="service-card position-relative p-4 border rounded bg-white shadow-sm">
+                                        <span class="service-price">Desde $15</span>
+                                        <div class="icon-circle mb-3"><i class="fas fa-bell-concierge"></i></div>
+                                        <h6 class="fw-semibold mb-1">Servicio de Habitación</h6>
+                                        <p class="text-muted small mb-3">Disponible 24/7</p>
+                                        <button class="btn btn-outline-secondary w-100">Solicitar</button>
+                                    </div>
+                                </div>
+
+                                <!-- Servicio 2 -->
+                                <div class="col-md-6">
+                                    <div class="service-card position-relative p-4 border rounded bg-white shadow-sm">
+                                        <span class="service-price">$10/día</span>
+                                        <div class="icon-circle mb-3"><i class="fas fa-wifi"></i></div>
+                                        <h6 class="fw-semibold mb-1">WiFi Premium</h6>
+                                        <p class="text-muted small mb-3">Alta velocidad</p>
+                                        <button class="btn btn-outline-secondary w-100">Solicitar</button>
+                                    </div>
+                                </div>
+
+                                <!-- Servicio 3 -->
+                                <div class="col-md-6">
+                                    <div class="service-card position-relative p-4 border rounded bg-white shadow-sm">
+                                        <span class="service-price">$25/persona</span>
+                                        <div class="icon-circle mb-3"><i class="fas fa-utensils"></i></div>
+                                        <h6 class="fw-semibold mb-1">Desayuno Buffet</h6>
+                                        <p class="text-muted small mb-3">7:00 AM - 11:00 AM</p>
+                                        <button class="btn btn-outline-secondary w-100">Solicitar</button>
+                                    </div>
+                                </div>
+
+                                <!-- Servicio 4 -->
+                                <div class="col-md-6">
+                                    <div class="service-card position-relative p-4 border rounded bg-white shadow-sm">
+                                        <span class="service-price">$50</span>
+                                        <div class="icon-circle mb-3"><i class="fas fa-clock"></i></div>
+                                        <h6 class="fw-semibold mb-1">Late Check-out</h6>
+                                        <p class="text-muted small mb-3">Hasta las 4:00 PM</p>
+                                        <button class="btn btn-outline-secondary w-100">Solicitar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sección de ayuda -->
+                            <div class="contact-support mt-4 p-3 border rounded bg-white shadow-sm d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="fw-semibold mb-0">¿Necesitas ayuda?</h6>
+                                    <p class="text-muted small mb-0">Nuestro equipo está disponible 24/7 para asistirte con cualquier solicitud especial</p>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-light border"><i class="fas fa-phone me-2"></i>Llamar a Recepción</button>
+                                    <button class="btn btn-outline-secondary">Conserje</button>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Pestaña: Historial -->
-                        <div class="tab-pane" id="historial">
+                        <div class="tab-pane fade" id="historial" role="tabpanel">
                             <p class="text-muted">Contenido de Historial</p>
                         </div>
 
                         <!-- Pestaña: Nueva Reserva -->
-                        <div class="tab-pane" id="nueva-reserva">
+                        <div class="tab-pane fade" id="nueva-reserva" role="tabpanel">
                             <p class="text-muted">Contenido de Nueva Reserva</p>
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </main>
-
     </div>
 
     <!-- ======================== SCRIPTS ======================== -->
