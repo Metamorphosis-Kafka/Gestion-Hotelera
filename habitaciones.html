@@ -1,0 +1,364 @@
+<?php
+// En una aplicación real, este archivo usaría PHP para:
+// 1. Procesar los filtros de búsqueda (GET/POST).
+// 2. Consultar la base de datos de habitaciones.
+// 3. Renderizar las tarjetas dinámicamente.
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Habitaciones y Suites - Royal Inti Host</title>
+    <!-- Incluyendo Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuración del tema de colores y fuentes de IntiHost -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#D1B980', // Color dorado/beige principal
+                        'primary-dark': '#c0a66d', // Un poco más oscuro para hover
+                        'neutral': '#1a1a1a', // Color de texto principal
+                        'background-light': '#f9f9f9', // Fondo
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Enlace a la fuente Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f9f9f9; }
+        /* Estilo para los inputs de filtro, dándoles el borde dorado al enfocarse */
+        .input-focus-primary:focus {
+            border-color: #D1B980;
+            box-shadow: 0 0 0 1px #D1B980;
+        }
+    </style>
+</head>
+<body class="text-neutral bg-background-light">
+
+    <!-- BARRA DE NAVEGACIÓN (Replicado de index.php) -->
+    <header class="bg-[#f1ebe3] border-b border-gray-200">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-3 items-center gap-4 py-3">
+                <div class="flex items-center">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-primary text-white p-2 rounded-md shadow-sm">
+                            <i class="fas fa-hotel"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm font-semibold text-neutral">IntiHost</div>
+                            <div class="text-xs text-gray-600">Royal Inti Host</div>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="justify-self-center">
+                    <ul class="flex items-center gap-8 text-sm font-medium text-neutral">
+                        <li><a href="index.php" class="hover:text-primary">Inicio</a></li>
+                        <li><a href="habitaciones.php" class="hover:text-primary">Habitaciones</a></li>
+                        <li><a href="servicios.php" class="hover:text-primary">Servicios</a></li>
+                        <li><a href="nosotros.php" class="hover:text-primary">Nosotros</a></li>
+                    </ul>
+                </nav>
+
+                <div class="flex justify-end items-center gap-3">
+                    <a href="login.php" class="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-full border border-transparent hover:bg-[#e6dac1] transition">
+                        <i class="fas fa-user-circle text-[#6b5b3b]"></i>
+                        <span class="text-[#6b5b3b]">Iniciar Sesión</span>
+                    </a>
+
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full bg-primary hover:bg-primary-dark text-white shadow-sm transition">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Reservar Ahora</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- BANNER Y BÚSQUEDA RÁPIDA -->
+    <section class="relative bg-cover bg-center py-20 md:py-32" style="background-image: url('https://images.unsplash.com/photo-1549419137-33232c9e29a9?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600&h=600&fit=crop&bg=FFFFFF&dl=0');">
+        <div class="absolute inset-0 bg-neutral/60"></div>
+        <div class="container mx-auto px-6 relative z-10 text-white text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Nuestras Habitaciones</h1>
+            <p class="text-xl md:text-2xl font-light">Encuentra tu refugio perfecto de lujo y confort.</p>
+        </div>
+    </section>
+
+    <!-- FORMULARIO DE BÚSQUEDA FLOTANTE (Search Bar) -->
+    <section class="container mx-auto px-6 -mt-12 mb-12 relative z-20">
+        <form class="bg-white p-6 md:p-8 rounded-xl shadow-2xl border border-gray-100 grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+            
+            <div class="md:col-span-1">
+                <label for="checkin" class="block text-xs font-semibold uppercase text-gray-500 mb-1">Llegada</label>
+                <div class="relative">
+                    <input type="date" id="checkin" name="checkin" required class="input-focus-primary w-full py-2 px-3 border border-gray-300 rounded-lg text-neutral placeholder-gray-400">
+                </div>
+            </div>
+
+            <div class="md:col-span-1">
+                <label for="checkout" class="block text-xs font-semibold uppercase text-gray-500 mb-1">Salida</label>
+                <div class="relative">
+                    <input type="date" id="checkout" name="checkout" required class="input-focus-primary w-full py-2 px-3 border border-gray-300 rounded-lg text-neutral placeholder-gray-400">
+                </div>
+            </div>
+
+            <div class="md:col-span-1">
+                <label for="guests" class="block text-xs font-semibold uppercase text-gray-500 mb-1">Huéspedes</label>
+                <div class="relative">
+                    <select id="guests" name="guests" class="input-focus-primary w-full py-2.5 px-3 border border-gray-300 rounded-lg text-neutral appearance-none">
+                        <option value="1">1 Huésped</option>
+                        <option value="2" selected>2 Huéspedes</option>
+                        <option value="3">3 Huéspedes</option>
+                        <option value="4+">4+ Huéspedes</option>
+                    </select>
+                    <i class="fas fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+                </div>
+            </div>
+
+            <div class="md:col-span-2">
+                <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-search mr-2"></i>
+                    Buscar Disponibilidad
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- CONTENIDO PRINCIPAL (Filtros y Listado) -->
+    <section class="container mx-auto px-6 pb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+
+            <!-- COLUMNA DE FILTROS (Lateral) -->
+            <aside class="lg:col-span-1 bg-white p-6 rounded-xl shadow-lg border border-gray-100 h-fit sticky top-6">
+                <h3 class="text-xl font-bold mb-5 border-b pb-3 text-neutral">Filtros Avanzados</h3>
+
+                <form class="space-y-6">
+
+                    <!-- FILTRO POR TIPO DE HABITACIÓN -->
+                    <div class="border-b pb-4">
+                        <h4 class="font-semibold text-neutral mb-3">Tipo de Habitación</h4>
+                        <label class="flex items-center text-gray-600 mb-2">
+                            <input type="checkbox" class="form-checkbox text-primary rounded-sm focus:ring-primary h-4 w-4 mr-2">
+                            Suite Presidencial
+                        </label>
+                        <label class="flex items-center text-gray-600 mb-2">
+                            <input type="checkbox" class="form-checkbox text-primary rounded-sm focus:ring-primary h-4 w-4 mr-2" checked>
+                            Habitación Deluxe
+                        </label>
+                        <label class="flex items-center text-gray-600">
+                            <input type="checkbox" class="form-checkbox text-primary rounded-sm focus:ring-primary h-4 w-4 mr-2">
+                            Suite Ejecutiva
+                        </label>
+                    </div>
+
+                    <!-- FILTRO POR CAPACIDAD -->
+                    <div class="border-b pb-4">
+                        <h4 class="font-semibold text-neutral mb-3">Capacidad Máxima</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="capacity" value="2" class="form-radio h-4 w-4 text-primary focus:ring-primary mr-1" checked> 2 Pers.
+                            </label>
+                            <label class="inline-flex items-center ml-4">
+                                <input type="radio" name="capacity" value="4" class="form-radio h-4 w-4 text-primary focus:ring-primary mr-1"> 4 Pers.
+                            </label>
+                            <label class="inline-flex items-center ml-4">
+                                <input type="radio" name="capacity" value="6" class="form-radio h-4 w-4 text-primary focus:ring-primary mr-1"> 6 Pers.
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- FILTRO POR SERVICIOS -->
+                    <div class="pb-2">
+                        <h4 class="font-semibold text-neutral mb-3">Servicios Incluidos</h4>
+                        <label class="flex items-center text-gray-600 mb-2">
+                            <input type="checkbox" class="form-checkbox text-primary rounded-sm focus:ring-primary h-4 w-4 mr-2" checked>
+                            <i class="fas fa-wifi mr-2 text-primary"></i> WiFi de Alta Velocidad
+                        </label>
+                        <label class="flex items-center text-gray-600 mb-2">
+                            <input type="checkbox" class="form-checkbox text-primary rounded-sm focus:ring-primary h-4 w-4 mr-2">
+                            <i class="fas fa-coffee mr-2 text-primary"></i> Desayuno Gourmet
+                        </label>
+                        <label class="flex items-center text-gray-600 mb-2">
+                            <input type="checkbox" class="form-checkbox text-primary rounded-sm focus:ring-primary h-4 w-4 mr-2" checked>
+                            <i class="fas fa-wind mr-2 text-primary"></i> Aire Acondicionado
+                        </label>
+                        <label class="flex items-center text-gray-600">
+                            <input type="checkbox" class="form-checkbox text-primary rounded-sm focus:ring-primary h-4 w-4 mr-2">
+                            <i class="fas fa-concierge-bell mr-2 text-primary"></i> Servicio a la Habitación
+                        </label>
+                    </div>
+
+                    <button type="submit" class="w-full bg-neutral hover:bg-neutral/80 text-white font-semibold py-2.5 rounded-lg transition">Aplicar Filtros</button>
+                </form>
+            </aside>
+
+            <!-- COLUMNA DE RESULTADOS DE HABITACIONES -->
+            <div class="lg:col-span-3 space-y-8">
+                
+                <!-- Tarjeta de Habitación 1: Suite Presidencial -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden md:flex">
+                    <div class="md:w-2/5 relative">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" class="w-full h-64 object-cover" alt="Suite Presidencial">
+                        <span class="absolute top-4 left-4 bg-primary text-white text-sm font-semibold px-4 py-1 rounded-full shadow-md">Máximo Lujo</span>
+                    </div>
+                    <div class="md:w-3/5 p-6 md:p-8">
+                        <div class="flex justify-between items-start mb-3">
+                            <h2 class="text-2xl font-bold text-neutral">Suite Presidencial</h2>
+                            <div class="text-right">
+                                <p class="text-3xl font-extrabold text-primary">S/. 850</p>
+                                <p class="text-sm text-gray-500">por noche</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4 border-b pb-4">La cúspide del confort, con sala de estar separada, jacuzzi privado y vistas panorámicas a la ciudad.</p>
+                        
+                        <!-- Detalles de la Habitación -->
+                        <div class="grid grid-cols-2 gap-y-2 text-sm mb-6">
+                            <p class="text-gray-700"><i class="fas fa-expand mr-2 text-primary"></i>120 m²</p>
+                            <p class="text-gray-700"><i class="fas fa-user-friends mr-2 text-primary"></i>Capacidad: 4</p>
+                            <p class="text-gray-700"><i class="fas fa-bed mr-2 text-primary"></i>Cama King Size</p>
+                            <p class="text-gray-700"><i class="fas fa-bath mr-2 text-primary"></i>Jacuzzi y Ducha Española</p>
+                        </div>
+                        
+                        <div class="mt-4 flex flex-col sm:flex-row justify-between items-center">
+                            <a href="#" class="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-lg transition duration-300 w-full sm:w-auto text-center mb-3 sm:mb-0">
+                                Reservar Ahora
+                            </a>
+                            <a href="#" class="text-sm font-semibold text-neutral hover:text-primary transition">
+                                Ver Detalles <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Habitación 2: Habitación Deluxe -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden md:flex">
+                    <div class="md:w-2/5 relative">
+                        <img src="https://images.unsplash.com/photo-1590490359854-dfba19688d70?auto=format&fit=crop&w=800&q=80" class="w-full h-64 object-cover" alt="Habitación Deluxe">
+                        <span class="absolute top-4 left-4 bg-primary text-white text-sm font-semibold px-4 py-1 rounded-full shadow-md">Popular</span>
+                    </div>
+                    <div class="md:w-3/5 p-6 md:p-8">
+                        <div class="flex justify-between items-start mb-3">
+                            <h2 class="text-2xl font-bold text-neutral">Habitación Deluxe</h2>
+                            <div class="text-right">
+                                <p class="text-3xl font-extrabold text-primary">S/. 450</p>
+                                <p class="text-sm text-gray-500">por noche</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4 border-b pb-4">Elegancia clásica y todas las comodidades modernas. Ideal para parejas o viajeros de negocios.</p>
+                        
+                        <!-- Detalles de la Habitación -->
+                        <div class="grid grid-cols-2 gap-y-2 text-sm mb-6">
+                            <p class="text-gray-700"><i class="fas fa-expand mr-2 text-primary"></i>55 m²</p>
+                            <p class="text-gray-700"><i class="fas fa-user-friends mr-2 text-primary"></i>Capacidad: 2</p>
+                            <p class="text-gray-700"><i class="fas fa-bed mr-2 text-primary"></i>Cama Queen Size</p>
+                            <p class="text-gray-700"><i class="fas fa-bath mr-2 text-primary"></i>Baño Privado de Mármol</p>
+                        </div>
+                        
+                        <div class="mt-4 flex flex-col sm:flex-row justify-between items-center">
+                            <a href="#" class="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-lg transition duration-300 w-full sm:w-auto text-center mb-3 sm:mb-0">
+                                Reservar Ahora
+                            </a>
+                            <a href="#" class="text-sm font-semibold text-neutral hover:text-primary transition">
+                                Ver Detalles <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Habitación 3: Suite Ejecutiva (No Disponible) -->
+                <div class="bg-white rounded-xl shadow-lg transition duration-300 overflow-hidden md:flex opacity-60">
+                    <div class="md:w-2/5 relative">
+                        <img src="https://images.unsplash.com/photo-1560037812-78d102e3b97b?auto=format&fit=crop&w=800&q=80" class="w-full h-64 object-cover" alt="Suite Ejecutiva">
+                        <span class="absolute top-4 left-4 bg-red-600 text-white text-sm font-semibold px-4 py-1 rounded-full shadow-md">No Disponible</span>
+                    </div>
+                    <div class="md:w-3/5 p-6 md:p-8">
+                        <div class="flex justify-between items-start mb-3">
+                            <h2 class="text-2xl font-bold text-neutral">Suite Ejecutiva</h2>
+                            <div class="text-right">
+                                <p class="text-3xl font-extrabold text-primary">S/. 320</p>
+                                <p class="text-sm text-gray-500">por noche</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4 border-b pb-4">Espacio de trabajo dedicado y conexión premium, diseñada para el viajero de negocios exigente.</p>
+                        
+                        <!-- Detalles de la Habitación -->
+                        <div class="grid grid-cols-2 gap-y-2 text-sm mb-6">
+                            <p class="text-gray-700"><i class="fas fa-expand mr-2 text-primary"></i>40 m²</p>
+                            <p class="text-gray-700"><i class="fas fa-user-friends mr-2 text-primary"></i>Capacidad: 1-2</p>
+                            <p class="text-gray-700"><i class="fas fa-bed mr-2 text-primary"></i>Cama Doble</p>
+                            <p class="text-gray-700"><i class="fas fa-bath mr-2 text-primary"></i>Escritorio Amplio</p>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <button disabled class="bg-gray-400 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 w-full cursor-not-allowed">
+                                Agotada para las Fechas Seleccionadas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (Replicado de index.php) -->
+    <footer class="bg-header-light py-10 border-t mt-10">
+        <div class="container mx-auto px-6 grid md:grid-cols-4 gap-8 text-gray-700">
+            <div>
+                <div class="flex items-center space-x-2 mb-3">
+                    <div class="bg-primary text-white p-2 rounded">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3 class="font-bold text-lg">IntiHost</h3>
+                </div>
+                <p class="text-sm text-gray-600">Experiencia de lujo y confort excepcional para huéspedes distinguidos.</p>
+            </div>
+
+            <div>
+                <h3 class="font-bold mb-3">Enlaces Rápidos</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="habitaciones.php" class="hover:text-primary">Habitaciones</a></li>
+                    <li><a href="servicios.php" class="hover:text-primary">Servicios</a></li>
+                    <li><a href="nosotros.php" class="hover:text-primary">Nosotros</a></li>
+                    <li><a href="contacto.php" class="hover:text-primary">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-bold mb-3">Contacto</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><i class="fas fa-phone-alt mr-2 text-primary"></i> +51 999 888 777</li>
+                    <li><i class="fas fa-envelope mr-2 text-primary"></i> info@intihost.com</li>
+                    <li><i class="fas fa-map-marker-alt mr-2 text-primary"></i> Av. Principal 123, Tacna, Perú</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-bold mb-3">Síguenos</h3>
+                <div class="flex space-x-4 text-primary text-xl">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- copyright -->
+        <div class="text-center text-gray-500 text-sm mt-10 pt-6 border-t border-gray-200">
+            &copy; 2025 IntiHost - Royal Inti Host. Todos los derechos reservados.
+        </div>
+    </footer>
+
+</body>
+</html>
