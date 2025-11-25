@@ -304,61 +304,10 @@ body {
     overflow: hidden;
 }
 
-/* Navegación de pestañas */
-.tabs-navigation {
-    display: flex;
-    border-bottom: 1px solid var(--border-color);
-    background-color: var(--bg-white);
-}
-
-.tab-btn {
-    flex: 1;
-    padding: 1rem 1.25rem;
-    background-color: transparent;
-    border: none;
-    border-bottom: 3px solid transparent;
-    color: var(--text-muted);
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.tab-btn:hover {
-    color: var(--primary-color);
-    background-color: #f9f8f6;
-}
-
-.tab-btn.active {
-    color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
-    background-color: transparent;
-}
-
-/* Contenido de las pestañas */
-.tabs-content {
-    padding: 1.5rem;
-    min-height: 200px;
-}
-
-.tab-pane {
-    display: none;
-}
-
-.tab-pane.active {
-    display: block;
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
+/* Nota: las pestañas ahora usan estilos de Bootstrap por defecto. Reglas
+   personalizadas de pestañas (tabs-navigation / tab-btn / tabs-content)
+   se removieron porque la plantilla del dashboard fue eliminada y esa
+   implementación ya no se utiliza. */
 
 /* ======================== UTILIDADES RESPONSIVE ======================== */
 
@@ -419,6 +368,7 @@ body {
         border-radius: 0;
         margin-left: -12px;
         margin-right: -12px;
+        margin-top: 40px;
     }
 
     .card-header-custom,
@@ -563,4 +513,47 @@ body {
 .slider-item {
     scroll-snap-align: start;
 }
+
+/* ======================== CUSTOM: PESTAÑAS Y TARJETAS (USUARIO) ======================== */
+.content-box {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/*** Pestañas estilo Velvet ***/
+/* Reglas de 'tabs-nav'/.tab-link eliminadas: no utilizadas tras borrar dashboard. */
+
+/*** Tarjetas ***/
+.service-card {
+    background: #ffffff;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    text-align: left;
+}
+
+.price-tag {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #b28a52;
+    font-size: 13px;
+}
+
+.btn-request {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-request:hover {
+    background: #f9f9f9;
+}
+
 

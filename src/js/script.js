@@ -1,25 +1,5 @@
-// ====================================
-// FUNCIONALIDAD DE PESTAÑAS
-// ====================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabPanes = document.querySelectorAll('.tab-pane');
-
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const tabName = this.getAttribute('data-tab');
-
-            // Remover clase active de todos los botones y pestañas
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabPanes.forEach(pane => pane.classList.remove('active'));
-
-            // Agregar clase active al botón y pestaña seleccionada
-            this.classList.add('active');
-            document.getElementById(tabName).classList.add('active');
-        });
-    });
-});
+// (Se eliminó la lógica antigua de pestañas .tab-btn / .tab-pane porque ya
+// se usa la implementación de Bootstrap en las páginas principales.)
 
 // ====================================
 // FUNCIONALIDAD DE LOGOUT
@@ -62,3 +42,5 @@ document.querySelectorAll('.btn').forEach(btn => {
         }
     });
 });
+
+// (Se eliminó la lógica `.tab-link` personalizada — ya no es necesaria.)
