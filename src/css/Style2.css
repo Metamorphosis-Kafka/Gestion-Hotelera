@@ -1,0 +1,301 @@
+/* --- VARIABLES Y ESTILOS GLOBALES --- */
+:root {
+    --color-beige: #D4C2A4;
+    --color-verde: #6A8E7F;
+    --color-amarillo-claro: #F0E6D5;
+    --color-azul-oscuro: #4A5568;
+    --color-fondo: #F7FAFC;
+    --color-texto-principal: #2D3748;
+    --color-texto-secundario: #718096;
+    --color-borde: #E2E8F0;
+    --color-blanco: #FFFFFF;
+    --color-verde-estado: #48BB78;
+    --color-rojo-estado: #E53E3E;
+    --color-amarillo-estado: #ECC94B;
+    --color-gris-estado: #A0AEC0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto-principal);
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- HEADER SUPERIOR --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    color: var(--color-texto-secundario);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--color-blanco);
+    border: 1px solid var(--color-borde);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.user-menu span {
+    font-weight: 500;
+}
+
+.user-menu .user-role {
+    background-color: var(--color-amarillo-claro);
+    color: var(--color-texto-principal);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+/* --- PANEL HEADER Y BOTONES DE ACCIÓN --- */
+.panel-header {
+    padding: 40px 0;
+}
+
+.panel-header h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.panel-header p {
+    font-size: 18px;
+    color: var(--color-texto-secundario);
+    margin-top: 5px;
+}
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.action-btn {
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.action-btn i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.action-btn.check-in { background-color: var(--color-beige); color: var(--color-texto-principal); }
+.action-btn.check-out { background-color: var(--color-verde); color: var(--color-blanco); }
+.action-btn.new-reservation { background-color: var(--color-beige); color: var(--color-texto-principal); }
+.action-btn.register-payment { background-color: var(--color-azul-oscuro); color: var(--color-blanco); }
+
+/* --- NAVEGACIÓN Y CONTENIDO DE PESTAÑAS --- */
+.tabs-nav {
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid var(--color-borde);
+    margin-bottom: 30px;
+}
+
+.tab-link {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    color: var(--color-texto-secundario);
+    transition: all 0.2s;
+}
+
+.tab-link.active {
+    color: var(--color-texto-principal);
+    background-color: var(--color-blanco);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+}
+
+.tab-pane {
+    display: none; /* Oculto por defecto */
+}
+
+.tab-pane.active {
+    display: block; /* Visible cuando está activo */
+}
+
+/* --- ESTILOS DE COMPONENTES INTERNOS (TARJETAS, LISTAS, TABLAS) --- */
+.card {
+    background-color: var(--color-blanco);
+    border: 1px solid var(--color-borde);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.card-header h2 small {
+    font-weight: 400;
+    color: var(--color-texto-secundario);
+    margin-left: 10px;
+}
+
+.badge-pending {
+    background-color: var(--color-amarillo-claro);
+    color: var(--color-texto-principal);
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-weight: 600;
+}
+
+/* PESTAÑA RESERVAS */
+.search-bar {
+    position: relative;
+    margin-bottom: 20px;
+}
+.search-bar i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-texto-secundario);
+}
+.search-bar input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.reservations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reservation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--color-borde);
+}
+.reservation-item:last-child {
+    border-bottom: none;
+}
+.reservation-item .info h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+.reservation-item .info p {
+    margin: 5px 0 0;
+    color: var(--color-texto-secundario);
+}
+.reservation-item .info p i {
+    margin: 0 5px 0 10px;
+}
+.reservation-item .info p i:first-child {
+    margin-left: 0;
+}
+.status {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.status.check-in { background-color: var(--color-amarillo-claro); color: var(--color-texto-principal); }
+.status.check-out { background-color: #D6EAF8; color: #2E86C1; } /* Color para check-out */
+
+.actions { display: flex; gap: 10px; }
+.btn-action-primary { background-color: var(--color-beige); border: 1px solid var(--color-beige); color: var(--color-texto-principal); padding: 8px 15px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.btn-action-secondary { background-color: var(--color-blanco); border: 1px solid var(--color-borde); color: var(--color-texto-principal); padding: 8px 15px; border-radius: 8px; font-weight: 500; cursor: pointer; }
+.status-completed { color: var(--color-verde-estado); font-weight: 600; }
+
+/* PESTAÑA HABITACIONES */
+.legend { display: flex; gap: 15px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-weight: 500; }
+.legend-item::before { content: ''; display: block; width: 12px; height: 12px; border-radius: 50%; }
+.legend-item.available::before { background-color: var(--color-verde-estado); }
+.legend-item.occupied::before { background-color: var(--color-gris-estado); }
+
+.rooms-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+.rooms-table th, .rooms-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--color-borde); }
+.rooms-table th { color: var(--color-texto-secundario); font-weight: 500; }
+.rooms-table td strong { font-weight: 600; }
+
+.status-room { font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 12px; text-align: center; }
+.status-room.disponible { background-color: #E6F4EA; color: var(--color-verde-estado); }
+.status-room.ocupada { background-color: #EDF2F7; color: var(--color-gris-estado); }
+.status-room.limpieza { background-color: #FEF CDE; color: var(--color-amarillo-estado); }
+.status-room.mantenimiento { background-color: #FED7D7; color: var(--color-rojo-estado); }
+
+.floor-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+.floor-card { background-color: var(--color-blanco); border: 1px solid var(--color-borde); border-radius: 10px; padding: 20px; }
+.floor-card h3 { margin: 0; font-size: 18px; }
+.floor-card p { margin: 10px 0 0; color: var(--color-texto-secundario); display: flex; justify-content: space-between; align-items: center; }
+.floor-card p span { font-size: 24px; font-weight: bold; color: var(--color-texto-principal); }
+
+/* PESTAÑA PAGOS */
+.payments-list { list-style: none; padding: 0; margin: 0; }
+.payment-item { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--color-borde); }
+.payment-item:last-child { border-bottom: none; }
+.payment-item .info h3 { margin: 0; font-size: 18px; font-weight: 600; }
+.payment-item .info p { margin: 5px 0 0; color: var(--color-texto-secundario); }
+.payment-details { display: flex; align-items: center; gap: 30px; }
+.amount { text-align: right; }
+.amount span { font-size: 22px; font-weight: bold; display: block; }
+.amount small { color: var(--color-texto-secundario); }
+.payment-status-paid { color: var(--color-verde-estado); font-weight: 600; background-color: #E6F4EA; padding: 8px 15px; border-radius: 8px; }
