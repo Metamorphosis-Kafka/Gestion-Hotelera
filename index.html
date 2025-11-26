@@ -1,243 +1,58 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Royal Inti Host</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    body { font-family: 'Poppins', sans-serif; background-color: #f9f9f9; }
-  </style>
-</head>
-<body class="text-[#1a1a1a]">
+<?php include 'header.php'; ?>
 
-  <!-- NAVBAR -->
-<header class="bg-[#f1ebe3] border-b border-gray-200">
-  <div class="container mx-auto px-6">
-    <div class="grid grid-cols-3 items-center gap-4 py-3">
-      <div class="flex items-center">
-        <div class="flex items-center gap-3">
-          <div class="bg-[#D1B980] text-white p-2 rounded-md shadow-sm">
-            <i class="fas fa-hotel"></i>
-          </div>
-          <div>
-            <div class="text-sm font-semibold text-[#1a1a1a]">IntiHost</div>
-            <div class="text-xs text-gray-600">Royal Inti Host</div>
-          </div>
-        </div>
-      </div>
-
-      <nav class="justify-self-center">
-        <ul class="flex items-center gap-8 text-sm font-medium text-[#1a1a1a]">
-          <li><a href="intiHost/index.php" class="hover:text-[#D1B980]">Inicio</a></li>
-          <li><a href="habitaciones.php" class="hover:text-[#D1B980]">Habitaciones</a></li>
-          <li><a href="servicios.php" class="hover:text-[#D1B980]">Servicios</a></li>
-          <li><a href="contacto.php" class="hover:text-[#D1B980]">Contacto</a></li>
-        </ul>
-      </nav>
-
-      <div class="flex justify-end items-center gap-3">
-        <a href="login.php" class="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-full border border-transparent hover:bg-[#e6dac1] transition">
-          <i class="fas fa-user-circle text-[#6b5b3b]"></i>
-          <span class="text-[#6b5b3b]">Iniciar Sesión</span>
-        </a>
-
-        <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full bg-[#D1B980] hover:bg-[#c0a66d] text-white shadow-sm transition">
-          <i class="fas fa-calendar-check"></i>
-          <span>Reservar Ahora</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</header>
-
-  <!-- HERO -->
-  
-  <section class="relative bg-cover bg-center h-[80vh]" style="background-image: url('src/img/recepcion.jpg');">
+<!-- HERO -->
+<section class="relative bg-cover bg-center h-[80vh]" style="background-image: url('src/img/recepcion.jpg');">
     <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60"></div>
+
     <div class="relative z-10 w-full h-full flex items-center justify-center px-6">
-      <div class="w-full text-white text-center">
-        <h1 class="text-3xl sm:text-5xl md:text-7xl font-bold leading-tight mb-4 whitespace-nowrap">
-          Bienvenido a <span class="text-[#D1B980]">Royal Inti Host</span>
-        </h1>
-        <p class="text-lg md:text-2xl text-white/90 mb-8">Experiencia de lujo excepcional en el corazón de Tacna</p>
+        <div class="w-full text-white text-center">
+            <h1 class="text-3xl sm:text-5xl md:text-7xl font-bold mb-4">
+                Bienvenido a <span class="text-[var(--color-dorado)]">Royal Inti Host</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-white/90 mb-8">Experiencia de lujo excepcional en el corazón de Tacna</p>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#" class="inline-flex items-center justify-center bg-[#D1B980] hover:bg-[#c0a66d] text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300">
-            Explorar Habitaciones
-          </a>
-          <a href="#" class="inline-flex items-center justify-center bg-white text-[#6b5b3b] font-semibold py-3 px-8 rounded-full border-2 border-[#D1B980] hover:bg-[#f7f1e6] transition duration-300">
-            Contáctanos
-          </a>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="habitaciones.php" class="btn-dorado py-3 px-8 rounded-full shadow-lg transition text-center">Explorar Habitaciones</a>
+                <a href="contacto.php" class="btn-dorado-outline py-3 px-8 rounded-full text-center">Contáctanos</a>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 
-  <!-- SERVICIOS -->
-  <section class="py-16 bg-[#f9f9f9]">
+<!-- SERVICIOS -->
+<section class="py-16 bg-[#f9f9f9]">
     <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold text-[#1a1a1a] mb-3">¿Por qué elegirnos?</h2>
-      <p class="text-gray-600 mb-12">Compromiso con la excelencia en cada detalle</p>
+        <h2 class="text-3xl font-bold text-[#1a1a1a] mb-3">¿Por qué elegirnos?</h2>
+        <p class="text-gray-600 mb-12">Compromiso con la excelencia en cada detalle</p>
 
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div class="bg-white p-8 rounded-lg shadow hover:shadow-md transition">
-          <i class="fas fa-star text-[#D1B980] text-3xl mb-4"></i>
-          <h3 class="font-semibold text-lg mb-2">Servicio 5 Estrellas</h3>
-          <p class="text-gray-600">Atención personalizada y de primera clase.</p>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+            <div class="bg-white p-8 rounded-lg shadow hover:shadow-md transition">
+                <i class="fas fa-star text-[var(--color-dorado)] text-3xl mb-4"></i>
+                <h3 class="font-semibold text-lg mb-2">Servicio 5 Estrellas</h3>
+                <p class="text-gray-600">Atención personalizada y de primera clase.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow hover:shadow-md transition">
+                <i class="fas fa-building text-[var(--color-dorado)] text-3xl mb-4"></i>
+                <h3 class="font-semibold text-lg mb-2">Instalaciones Premium</h3>
+                <p class="text-gray-600">Habitaciones y servicios de lujo.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow hover:shadow-md transition">
+                <i class="fas fa-clock text-[var(--color-dorado)] text-3xl mb-4"></i>
+                <h3 class="font-semibold text-lg mb-2">Disponible 24/7</h3>
+                <p class="text-gray-600">Recepción y servicios todo el día.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow hover:shadow-md transition">
+                <i class="fas fa-shield-alt text-[var(--color-dorado)] text-3xl mb-4"></i>
+                <h3 class="font-semibold text-lg mb-2">Seguridad Total</h3>
+                <p class="text-gray-600">Protección y privacidad garantizada.</p>
+            </div>
+
         </div>
-        <div class="bg-white p-8 rounded-lg shadow hover:shadow-md transition">
-          <i class="fas fa-building text-[#D1B980] text-3xl mb-4"></i>
-          <h3 class="font-semibold text-lg mb-2">Instalaciones Premium</h3>
-          <p class="text-gray-600">Habitaciones y servicios de lujo.</p>
-        </div>
-        <div class="bg-white p-8 rounded-lg shadow hover:shadow-md transition">
-          <i class="fas fa-clock text-[#D1B980] text-3xl mb-4"></i>
-          <h3 class="font-semibold text-lg mb-2">Disponible 24/7</h3>
-          <p class="text-gray-600">Recepción y servicios todo el día.</p>
-        </div>
-        <div class="bg-white p-8 rounded-lg shadow hover:shadow-md transition">
-          <i class="fas fa-shield-alt text-[#D1B980] text-3xl mb-4"></i>
-          <h3 class="font-semibold text-lg mb-2">Seguridad Total</h3>
-          <p class="text-gray-600">Protección y privacidad garantizada.</p>
-        </div>
-      </div>
     </div>
-  </section>
+</section>
 
-  <!-- HABITACIONES -->
-  <section class="py-16 bg-white">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold text-[#1a1a1a] mb-3">Habitaciones Destacadas</h2>
-      <p class="text-gray-600 mb-12">Descubre nuestras suites más exclusivas</p>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Suite Presidencial -->
-        <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
-          <div class="relative">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover" alt="Suite Presidencial">
-            <span class="absolute top-4 right-4 bg-[#D1B980] text-white text-sm font-semibold px-3 py-1 rounded-full">S/.450/noche</span>
-          </div>
-          <div class="p-6 text-left">
-            <h3 class="font-bold text-lg mb-2">Suite Presidencial</h3>
-            <p class="text-gray-600 mb-3">Lujo incomparable con vista panorámica.</p>
-            <div class="flex justify-between text-gray-600 text-sm mb-3">
-              <span><i class="fas fa-user mr-1"></i>4 personas</span>
-              <span><i class="fas fa-bed mr-1"></i>King bed</span>
-              <span><i class="fas fa-bath mr-1"></i>Baño privado</span>
-            </div>
-            <div class="flex gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">WiFi</span>
-              <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">Desayuno</span>
-              <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">A/C</span>
-            </div>
-            <a href="#" class="block w-full bg-[#D1B980] hover:bg-[#c0a66d] text-white text-center py-2 rounded-md font-semibold transition">Reservar Ahora</a>
-          </div>
-        </div>
-
-        <!-- Habitación Deluxe -->
-        <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
-          <div class="relative">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover" alt="Habitación Deluxe">
-            <span class="absolute top-4 right-4 bg-[#D1B980] text-white text-sm font-semibold px-3 py-1 rounded-full">S/.450/noche</span>
-          </div>
-          <div class="p-6 text-left">
-            <h3 class="font-bold text-lg mb-2">Habitación Deluxe</h3>
-            <p class="text-gray-600 mb-3">Elegancia y confort premium.</p>
-            <div class="flex justify-between text-gray-600 text-sm mb-3">
-              <span><i class="fas fa-user mr-1"></i>4 personas</span>
-              <span><i class="fas fa-bed mr-1"></i>King bed</span>
-              <span><i class="fas fa-bath mr-1"></i>Baño privado</span>
-            </div>
-            <div class="flex gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">WiFi</span>
-              <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">Desayuno</span>
-              <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">A/C</span>
-            </div>
-            <a href="#" class="block w-full bg-[#D1B980] hover:bg-[#c0a66d] text-white text-center py-2 rounded-md font-semibold transition">Reservar Ahora</a>
-          </div>
-        </div>
-
-        <!-- Suite Ejecutiva -->
-        <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
-          <div class="relative">
-            <img src="https://images.unsplash.com/photo-1590490359854-dfba19688d70?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover" alt="Suite Ejecutiva">
-            <span class="absolute top-4 right-4 bg-[#D1B980] text-white text-sm font-semibold px-3 py-1 rounded-full">S/.450/noche</span>
-            <span class="absolute top-4 left-4 bg-red-600 text-white text-sm font-semibold px-3 py-1 rounded-full">No Disponible</span>
-          </div>
-          <div class="p-6 text-left">
-            <h3 class="font-bold text-lg mb-2">Suite Ejecutiva</h3>
-            <p class="text-gray-600 mb-3">Perfecta para viaje de negocios.</p>
-            <div class="flex justify-between text-gray-600 text-sm mb-3">
-              <span><i class="fas fa-user mr-1"></i>4 personas</span>
-              <span><i class="fas fa-bed mr-1"></i>King bed</span>
-              <span><i class="fas fa-bath mr-1"></i>Baño privado</span>
-            </div>
-            <div class="flex gap-2 mb-4">
-              <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">WiFi</span>
-              <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">Desayuno</span>
-              <span class="px-3 py-1 bg-gray-100 rounded-full text-xs">A/C</span>
-            </div>
-            <button class="block w-full border-2 border-gray-300 text-gray-400 text-center py-2 rounded-md font-semibold cursor-not-allowed">No Disponible</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-10">
-        <a href="#" class="bg-[#D1B980] hover:bg-[#c0a66d] text-white font-semibold py-3 px-8 rounded-md transition">Ver Todas las Habitaciones</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="bg-[#f9f9f9] py-10 border-t mt-10">
-    <div class="container mx-auto px-6 grid md:grid-cols-4 gap-8 text-gray-700">
-      <div>
-        <div class="flex items-center space-x-2 mb-3">
-          <div class="bg-[#D1B980] text-white p-2 rounded">
-            <i class="fas fa-hotel"></i>
-          </div>
-          <h3 class="font-bold text-lg">IntiHost</h3>
-        </div>
-        <p class="text-sm text-gray-600">Experiencia de lujo y confort excepcional para huéspedes distinguidos.</p>
-      </div>
-
-        <div>
-            <h3 class="font-bold mb-3">Enlaces Rápidos</h3>
-            <ul class="space-y-2 text-sm">
-                <li><a href="habitaciones.php" class="hover:text-primary">Habitaciones</a></li>
-                <li><a href="servicios.php" class="hover:text-primary">Servicios</a></li>
-                <li><a href="nosotros.php" class="hover:text-primary">Nosotros</a></li>
-                <li><a href="contacto.php" class="hover:text-primary">Contacto</a></li>
-            </ul>
-        </div>
-
-      <div>
-        <h3 class="font-bold mb-3">Contacto</h3>
-        <ul class="space-y-2 text-sm">
-          <li><i class="fas fa-phone-alt mr-2 text-[#D1B980]"></i> +51 999 888 777</li>
-          <li><i class="fas fa-envelope mr-2 text-[#D1B980]"></i> info@intihost.com</li>
-          <li><i class="fas fa-map-marker-alt mr-2 text-[#D1B980]"></i> Av. Principal 123, Tacna, Perú</li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="font-bold mb-3">Síguenos</h3>
-        <div class="flex space-x-4 text-[#D1B980] text-xl">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- copyright -->
-    <div class="text-center text-gray-500 text-sm mt-10 pt-6 border-t border-gray-200">
-      &copy; 2025 IntiHost - Royal Inti Host. Todos los derechos reservados.
-    </div>
-  </footer>
-
-</body>
-</html>
+<?php include 'footer.php'; ?>
