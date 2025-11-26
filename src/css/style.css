@@ -6,6 +6,62 @@
  * Descripción: Estilos globales y componentes de la aplicación
  */
 
+/* ======================== EFRAIN ======================== */
+
+/* ================================
+   Variables de color IntiHost
+================================= */
+:root {
+    --color-dorado: #D1B980;
+    --color-dorado-hover: #c0a66d;
+    --color-arena: #f1ebe3;
+    --color-negro: #1a1a1a;
+    --color-gris-claro: #f9f9f9;
+    --color-texto: #333;
+}
+
+/* ================================
+   Estilos generales
+================================= */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-gris-claro);
+    color: var(--color-negro);
+}
+
+/* Clases personalizadas */
+.btn-dorado {
+    background: var(--color-dorado);
+    color: white;
+    transition: 0.3s;
+}
+
+.btn-dorado:hover {
+    background: var(--color-dorado-hover);
+}
+
+.btn-dorado-outline {
+    border: 2px solid var(--color-dorado);
+    color: var(--color-dorado);
+}
+
+.btn-dorado-outline:hover {
+    background: var(--color-arena);
+}
+
+/* Navbar */
+.nav-link-custom:hover {
+    color: var(--color-dorado) !important;
+}
+
+/* Footer */
+footer {
+    background: var(--color-gris-claro);
+}
+
+
+/* ======================== EFRAIN ======================== */
+
 /* ======================== VARIABLES DE COLOR ======================== */
 :root {
     --primary-color: #c9a961;              /* Dorado principal */
